@@ -1,0 +1,59 @@
+import numpy as np
+import numdifftools as nd
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import EKF
+
+
+mpl.rcParams.update({'font.size': 18})
+
+model = lambda x,u,: 0.5*x + (25*x)/(1 + x**2) + u*np.cos(x+1)
+z = lambda x :x
+time = [ii for ii in xrange(0,100)]
+
+
+x = 0
+loc = np.matrix([[x]])
+g = [model]
+h = [z]
+Q = np.eye(loc.shape[0])*10
+R = np.eye(loc.shape[0])*10
+sigma = np.eye(loc.shape[0])
+ekf = EKF.EKF(g,h,sigma,Q,R,loc)
+
+real_path = []
+predicted_path = []
+
+for t in time:
+    u = np.random.normal(0,10,1)
+    x = model(x,u)
+    real_path.append(x)
+    sensor = z(x)
+    print ekf.update(u,sensor)
+     
+ 
+ 
+ 
+f1 = plt.figure()
+ax = f1.add_subplot(111)
+plt.title("EKF")
+plt.xlabel('time')
+plt.ylabel('x')
+
+ax.plot(time, real_path,'b',label='real path' )
+ax.plot(time, predicted_path,'r',label= 'Predicted path')
+
+legend = ax.legend(loc='lower center', shadow=True)
+
+frame = legend.get_frame()
+for label in legend.get_texts():
+    label.set_fontsize('large')
+
+for label in legend.get_lines():
+    label.set_linewidth(1.5)  # the legend line width
+
+
+
+plt.show()
+
+

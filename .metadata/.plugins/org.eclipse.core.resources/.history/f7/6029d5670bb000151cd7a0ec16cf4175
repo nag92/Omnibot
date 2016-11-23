@@ -1,0 +1,26 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+This is a particle filter
+
+'''
+
+import numpy as np
+import sympy as sy
+
+class Particle_Filter(object):
+    
+    def __init__(self, model,sensor,m,dt):
+        self.model = model
+        self.M  = m
+        self.pred_x = []
+        self.dt = dt
+        self.sensor =sensor
+    
+    def update(self, u,z ):
+        
+        x_update = [self.model(x,u,self.dt) for x in self.pred_x]
+        z_update = map(self.sensor, x_update)
+        
+        

@@ -1,0 +1,45 @@
+'''
+Created on Jan 2, 2016
+
+@author: nathaniel
+'''
+
+import numpy as np  
+import pandas as pd
+import matplotlib.pyplot as plt
+import EKF
+
+
+df = pd.DataFrame.from_csv('/home/nathaniel/LSP/11-08-54/usbl_pose.csv', index_col=None)
+my_x = df['field.pose.position.x'].values.tolist()
+my_y = df['field.pose.position.y'].values.tolist()
+p = lambda x,u,: x  + 1*u
+v = lambda x,u,: u
+z = lambda x :1
+
+g = [ v,v,p,p ]
+h = [z,z,z,z]
+
+x = 0
+loc = np.matrix( [ x,x,x,x ] )
+Q = np.eye(loc.shape[0])*10
+R = np.eye(loc.shape[0])*10
+sigma = np.eye(loc.shape[0])
+ekf = EKF.EKF(g,h,sigma,Q,R,loc)
+real_path = []
+predicted_path = []
+
+vx = 1
+
+for ii in xrange(len(my_x)):
+    real_path.append(my_x[ii])
+    u = [ vx,vx,vx,vx ]
+    z = [[0],[0],[my_x[ii]],[my_y[ii]] ]
+    predicted_path.append(ekf.update(u, z) )
+    
+    
+    
+    
+    
+    
+ 

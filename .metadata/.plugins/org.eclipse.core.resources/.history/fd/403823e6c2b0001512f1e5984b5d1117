@@ -1,0 +1,65 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+This is a particle filter
+
+'''
+
+import numpy as np
+import scipy.stats
+from numpy import cumsum
+import random
+from scipy.signal.signaltools import resample
+from numpy.dual import inv
+
+class Particle_Filter(object):
+    
+    def __init__(self,x, model,sensor,m,dt,varence):
+        self.model = model
+        self.M  = m
+        self.pred_x = []
+        self.time = 0
+        self.dt = dt
+        self.sensor =sensor
+        self.varence = varence
+        self.pred_x = np.random.normal(x,varence**2,self.M)
+        
+    def update(self, u,z ):
+        x_update = [self.model(x,u,self.time) for x in self.pred_x]
+        z_update = map(self.sensor, x_update)
+        p_w = [scipy.stats.norm(x, np.sqrt( self.varence) ).pdf(z) for x in z_update]
+        w = [float(x)/float(np.sum(p_w)) for x in p_w]
+        #self.pred_x = self.resample(x_update,w)
+        self.pred_x = self.low_variance_resample(x_update,w)
+        self.time = self.time + self.dt
+        return np.mean(self.pred_x) 
+    
+    def resample(self,x,w):
+        sum = cumsum(w)
+        return [ x [ np.nonzero(random.random() <= sum )[0][0]] for _ in xrange(self.M) ]
+        
+        #return [ x [ (sum >= random.random()).argmax() ] for _ in xrange(self.M) ]
+    
+    def low_variance_resample(self, x, w):
+        x_list = []
+        inv = float(1)/self.M
+        r = random.uniform(0, inv)
+        c = w[0]
+        ii = 0
+        u = 0
+        for m in self.M:
+            u = r + (m-1)*inv
+            while u > c :
+                ii = ii + 1
+                c = c + w[ii]
+            x_list.append(x[ii])
+        return x_list
+                
+        
+        
+    
+        
+        
+        
+        

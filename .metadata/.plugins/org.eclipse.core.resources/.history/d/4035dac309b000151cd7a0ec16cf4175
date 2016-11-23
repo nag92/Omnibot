@@ -1,0 +1,15 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+This is a particle filter it use "sympy" libray to handle any equation
+
+'''
+
+import numpy as np
+import sympy as sy
+
+class Particle_Filter(object):
+    
+    def __init__(self, model, sensor, particals, varence, meas_noise, proc_noise ):
+        

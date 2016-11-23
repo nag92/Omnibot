@@ -1,0 +1,14 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+import scipy.stats
+import math
+import numpy as np
+
+
+p_update =  [ np.random(0,1) for ii in xrange(100)]
+print p_update
+#sum = np.cumsum(p_update)
+#print[ np.where(p_update<=sum)[0] for x in 100 ] 

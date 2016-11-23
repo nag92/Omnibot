@@ -1,0 +1,22 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+import scipy.stats
+import math
+import numpy as np
+from numpy.matlib import rand
+import random
+import Particle_Filter
+
+model = lambda x,t : 0.5*x + 25*x/(1 + x^2) + 8*np.cos(1.2*(t-1)) +  np.sqrt(1)*np.random.normal(0,1,1)
+z =lambda x :x^2/20 + np.sqrt(1)*np.random.normal(0,1,1)
+x = 0
+real_path = []
+real_path.append(x)
+
+for t in xrange(100):
+    x = model(x,t)
+    real_path.append(x)
+print real_path

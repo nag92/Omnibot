@@ -1,0 +1,8 @@
+prefix=/home/nathaniel/Documents/Omnibot/code/catkin_ws/devel
+
+Name: omni_shot
+Description: Description of omni_shot
+Version: 0.0.0
+Cflags: -I/home/nathaniel/Documents/Omnibot/code/catkin_ws/devel/include
+Libs: -L/home/nathaniel/Documents/Omnibot/code/catkin_ws/devel/lib 
+Requires: 

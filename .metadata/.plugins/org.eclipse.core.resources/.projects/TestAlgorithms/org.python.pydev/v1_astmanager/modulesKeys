@@ -1,0 +1,7 @@
+MODULES_MANAGER_V2
+EKF|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/EKF.py
+EKF_test02|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/EKF_test02.py
+Particle_Filter|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/Particle_Filter.py
+test|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/test.py
+test_EKF|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/test_EKF.py
+test_particle_filter|/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/test_particle_filter.py

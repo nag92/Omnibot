@@ -1,0 +1,27 @@
+mybot:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+
+#   m1_effort_controller:
+#       type: effort_controllers/JointVelocityController
+#       joint: m1_ball_joint
+#       pid: {p: 100.0, i: 0.1, d: 10.0}
+# # Effort Controllers ---------------------------------------
+#   m2_effort_controller:
+#     type: effort_controllers/JointVelocityController
+#     joint: m2_ball_joint
+#     pid: {p: 100.0, i: 0.1, d: 10.0}
+
+#   m3_effort_controller: 
+#     type: effort_controllers/JointVelocityController
+#     joint: m3_ball_joint
+#     pid: {p: 100.0, i: 0.1, d: 10.0}
+
+
+#   m4_effort_controller:
+#     type: effort_controllers/JointVelocityController
+#     joint: m4_ball_joint
+#     pid: {p: 100.0, i: 0.1, d: 10.0}

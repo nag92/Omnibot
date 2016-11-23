@@ -1,0 +1,7 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+import scipy.stats
+scipy.stats.norm(100, 12).pdf(98)

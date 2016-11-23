@@ -1,0 +1,41 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+This is a particle filter
+
+'''
+
+import numpy as np
+import scipy.stats
+from numpy import cumsum
+import random
+from scipy.signal.signaltools import resample
+
+class Particle_Filter(object):
+    
+    def __init__(self, model,sensor,m,dt,varence):
+        self.model = model
+        self.M  = m
+        self.pred_x = []
+        self.dt = dt
+        self.sensor =sensor
+        self.varence = varence
+    
+    def update(self, u,z ):
+        
+        x_update = [self.model(x,u,self.dt) for x in self.pred_x]
+        z_update = map(self.sensor, x_update)
+        p_w = [scipy.stats.norm(z, self.varence**2).pdf(x) for x in self.pred_x]
+        w = [x/float(np.sum(p_w)) for x in p_w]
+        self.pred_x = resample(x_update,w)
+        x = np.mean(self.pred_x)
+        return x 
+    
+    def resample(self,x,w):
+        sum = cumsum(w)
+        return [x( (sum >= random.random()).nonzero()[0][0]) for ii in self.M ] 
+       
+        
+        
+        

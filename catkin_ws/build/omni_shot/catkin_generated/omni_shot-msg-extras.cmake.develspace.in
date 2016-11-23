@@ -1,0 +1,2 @@
+set(omni_shot_MESSAGE_FILES "/home/nathaniel/Documents/Omnibot/code/catkin_ws/src/omni_shot/msg/motors.msg;/home/nathaniel/Documents/Omnibot/code/catkin_ws/src/omni_shot/msg/way_point.msg;/home/nathaniel/Documents/Omnibot/code/catkin_ws/src/omni_shot/msg/way_points.msg;/home/nathaniel/Documents/Omnibot/code/catkin_ws/src/omni_shot/msg/my_imu.msg;/home/nathaniel/Documents/Omnibot/code/catkin_ws/src/omni_shot/msg/trajectory_poly.msg")
+set(omni_shot_SERVICE_FILES "")

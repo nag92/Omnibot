@@ -1,0 +1,12 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+def fnTest(fn):
+    x = map(fn, xrange(10))
+    print x
+
+eq = lambda x: x
+
+fnTest(eq)

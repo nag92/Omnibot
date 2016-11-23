@@ -1,0 +1,16 @@
+INSTUPtest_particle_filter
+/home/nathaniel/Documents/Omnibot/code/TestAlgorithms/src/test_particle_filter.py
+INFOS:&&3|1|2|0&&3|3|2|0&&3|4|2|0&&3|5|2|0&&3|6|2|0&&3|7|2|0&&3|8|2|0&&3|4|2|0&&3|9|2|0&&3|10|2|0&&3|11|2|0&&3|12|2|0&&3|13|2|0
+model=1
+predicted_path=7
+ax=11
+real_path=6
+sensor=9
+particle=8
+time=5
+frame=13
+legend=12
+test_particle_filter=2
+f1=10
+z=3
+x=4

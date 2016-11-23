@@ -1,0 +1,18 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+import scipy.stats
+import math
+import numpy as np
+from numpy.matlib import rand
+import random
+
+
+p_update = [random.random() for _ in range(100)]
+print p_update
+sum = np.cumsum(p_update)
+print sum
+x =  np.where(p_update<=sum)
+print x[0] 

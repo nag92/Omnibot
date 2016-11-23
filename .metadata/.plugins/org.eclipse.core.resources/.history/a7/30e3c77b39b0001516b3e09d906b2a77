@@ -1,0 +1,38 @@
+'''
+Created on Dec 31, 2015
+
+@author: nathaniel
+'''
+import scipy.stats
+import math
+import numpy as np
+from numpy.matlib import rand
+import random
+import Particle_Filter
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+mpl.rcParams.update({'font.size': 18})
+
+model = lambda x,t : 0.5*x + (25*x)/(1 + x**2) + 8*np.cos(1.2*(t-1)) +  np.sqrt(1)*np.random.normal(0,1,1)
+z =lambda x :x^2/20 + np.sqrt(1)*np.random.normal(0,1,1)
+particle = Particle_Filter(model,z,100,1,2)
+
+
+x = 0
+time = [ii for ii in xrange(0,100)]
+real_path = []
+predicted_path = []
+
+for t in xrange(0,100):
+    x = model(x,t)
+    real_path.append(x)
+    sensor = z(x)
+    predicted_path.append(particle.update(0,sensor))
+    
+
+
+f1 = plt.figure()
+ax = f1.add_subplot(111)
+ax.plot(time, real_path,'b')
+ax.plot(time, predicted_path,'r')
+plt.show()
